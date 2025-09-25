@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Wiggly Mascot</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f0fdf4; /* light green background */
+      margin: 0;
+    }
+    img {
+      width: 300px; /* mascot size */
+      cursor: pointer;
+    }
+
+    /* wobble animation */
+    @keyframes wobble {
+      0% { transform: rotate(0) scale(1); }
+      15% { transform: rotate(-12deg) scale(1.05); }
+      30% { transform: rotate(12deg) scale(0.95); }
+      45% { transform: rotate(-8deg) scale(1.03); }
+      60% { transform: rotate(6deg) scale(0.98); }
+      75% { transform: rotate(-3deg) scale(1.01); }
+      100% { transform: rotate(0) scale(1); }
+    }
+    .wobble {
+      animation: wobble 0.7s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- your mascot -->
+  <img id="mascot" src="assets/mascot.png" alt="Slimy mascot">
+
+  <script>
+    const mascot = document.getElementById('mascot');
+    mascot.addEventListener('click', () => {
+      // remove old wobble if it’s already running
+      mascot.classList.remove('wobble');
+      // force reflow so animation restarts
+      void mascot.offsetWidth;
+      // add wobble again
+      mascot.classList.add('wobble');
+    });
+  </script>
+</body>
+</html>
